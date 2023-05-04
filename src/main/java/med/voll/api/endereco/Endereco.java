@@ -1,7 +1,31 @@
 package med.voll.api.endereco;
 
-public record Endereco(String logradouro, String bairro, String cep, String cidade, String uf,String numero, String cmplemento) {
+import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Embeddable
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Endereco {
+   private String logradouro;
+    private String bairro;
+    private String cep;
+    private String cidade;
+    private String uf;
+    private String numero;
+    private String complemento;
 
-
+ public Endereco(DadosEndereco dados) {
+  this.logradouro = dados.logradouro();
+  this.cidade = dados.cidade();
+  this.cep = dados.cep();
+  this.uf = dados.uf();
+  this.complemento = dados.complemento();
+  this.numero = dados.numero();
+  this.bairro = dados.bairro();
+ }
 }
